@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+   配置说明：
+   主要分为两部分内容: 缓存引擎：cacheEngine，定义存储缓存内容信息,CacheItem，定义缓存的项目
+   缓存引擎配置说明：
+        1、engineName：必须 缓存引擎名字在，cacheEngines中必须唯一
+        2、implClass：必须 缓存引擎实现类，要求实现com.sitech.crmtpd.common.cache.ICache接口
+        3、engineDesc 可选 缓存引擎描述信息
+        4、params：缓存引擎初始化时候传递的参数
+   缓存项目配置说明：
+        1、cacheName：必须 缓存大类，在CacheItems内必须唯一
+        2、engineName： 必须 缓存大类使用的主缓存引擎
+        3、params：缓存项目配置参数，各个缓存引擎初始化时候可以获取该参数，
+            注意：参数名称以cacheEngine开头的参数将作为内部使用，用于定义缓存的多级缓存，可以定义多个多级缓存
+            多级缓存说明：主缓存又称为一级缓存，主要存储到本机；二级缓存主要是非本机缓存用于加快缓存的加装速度。
+                           保存一个项目时候会将缓存信息保存到配置的所有基本的缓存引擎中
+                           读取一个项目时候优先读取主缓存，不能再读取二级缓存中的内容，如果从二级缓存中读取到内容则将缓存信息
+                           保存到本地主缓存以加快下次读取速度
+
+    ehcache引擎缓存可用参数说明：
+        1、cacheTemplateName 使用的ehache模板（ehcache.xml)中配置
+        2、maxBytesLocalOffHeap 大类使用的最大非栈内存大小
+        3、maxBytesLocalHeap 大类使用的最大堆内存大小
+-->
+<com.xmltoobject.test.CacheManagerInfo>
+	<cacheEngines>
+		<com.xmltoobject.test.CacheManagerInfo.cacheEngines.cacheEngine>
+			<com.xmltoobject.test.CacheManagerInfo.cacheEngines.cacheEngine.engineName>fileCache</com.xmltoobject.test.CacheManagerInfo.cacheEngines.cacheEngine.engineName>
+			<com.xmltoobject.test.CacheManagerInfo.cacheEngines.cacheEngine.implClass>com.sitech.rtid.common.cache.file.FileCacheEngine</com.xmltoobject.test.CacheManagerInfo.cacheEngines.cacheEngine.implClass>
+			<com.xmltoobject.test.CacheManagerInfo.cacheEngines.cacheEngine.engineDesc>基于文件的序列化缓存实现></com.xmltoobject.test.CacheManagerInfo.cacheEngines.cacheEngine.engineDesc>
+			<com.xmltoobject.test.CacheManagerInfo.cacheEngines.cacheEngine.params>
+				<com.xmltoobject.test.CacheManagerInfo.cacheEngines.cacheEngine.params.param name="cacheFolder" value="webroot:filecache" />
+			</com.xmltoobject.test.CacheManagerInfo.cacheEngines.cacheEngine.params>
+		</com.xmltoobject.test.CacheManagerInfo.cacheEngines.cacheEngine>
+		</cacheEngines>
+	<com.xmltoobject.test.CacheManagerInfo.CacheItems>
+		<!--
+			系统配置数据，每个主机一份，使用默认缓存模板 缓存策略：当前主机内存及磁盘文件 内存置换策略：较少使用（LFU）
+		-->
+		<com.xmltoobject.test.CacheManagerInfo.CacheItems.CacheItem>
+			<com.xmltoobject.test.CacheManagerInfo.CacheItems.CacheItem.cacheName>PROPERTIES_FILE</com.xmltoobject.test.CacheManagerInfo.CacheItems.CacheItem>
+			<com.xmltoobject.test.CacheManagerInfo.CacheItems.CacheItem.engineName>hashcache</com.xmltoobject.test.CacheManagerInfo.CacheItems.CacheItem.engineName>
+			<com.xmltoobject.test.CacheManagerInfo.CacheItems.CacheItem.cacheDesc>配置文件</com.xmltoobject.test.CacheManagerInfo.CacheItems.CacheItem.cacheDesc>
+	 </com.xmltoobject.test.CacheManagerInfo.CacheItems.CacheItem>
+	</com.xmltoobject.test.CacheManagerInfo.CacheItems>
+</com.xmltoobject.test.CacheManagerInfo>

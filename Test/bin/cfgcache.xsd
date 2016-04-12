@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 (http://www.altova.com) by Administrator (EMBRACE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="CacheManagerInfo">
+		<xs:annotation>
+			<xs:documentation>缓存配置信息</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="cacheEngines">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="cacheEngine" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>缓存引擎</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="engineName" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>引擎名称</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="implClass" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>引擎实现类</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="engineDesc" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>引擎描述</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="params" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>缓存引擎参数</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="param" type="Param" minOccurs="0"
+														maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>缓存引擎参数</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CacheItems">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CacheItem" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>缓存内容</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="cacheName" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>缓存大类名称</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="engineName" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>缓存大类使用引擎</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="cacheDesc" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>缓存内容描述</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="params" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>缓存项目参数</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="param" type="Param" minOccurs="0"
+														maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>缓存项目参数</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="Param">
+		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="value" type="xs:string" />
+	</xs:complexType>
+</xs:schema>

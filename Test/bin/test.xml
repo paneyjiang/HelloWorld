@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.kedou.com/exceptionProcessers/"
+	targetNamespace="http://www.kedou.com/exceptionProcessers/">
+
+	<element name="exceptionProcessers">
+
+		<complexType>
+
+			<sequence>
+
+				<element ref="tns:excludes" minOccurs="0" maxOccurs="1"></element>
+
+				<element ref="tns:processer" minOccurs="0" maxOccurs="unbounded"></element>
+
+			</sequence>
+
+		</complexType>
+
+	</element>
+
+
+
+	<element name="excludes">
+
+		<complexType>
+
+			<sequence>
+
+				<element ref="tns:pattern" minOccurs="1" maxOccurs="unbounded"></element>
+
+			</sequence>
+
+		</complexType>
+
+	</element>
+
+
+
+	<element name="pattern" type="string">
+
+	</element>
+
+
+
+	<element name="processer">
+
+		<complexType>
+
+			<sequence>
+
+				<element ref="tns:pattern" minOccurs="1" maxOccurs="unbounded"></element>
+
+			</sequence>
+
+			<attribute name="id" type="string" use="required"></attribute>
+
+			<attribute name="beanName" type="string"></attribute>
+
+			<attribute name="className" type="string"></attribute>
+
+		</complexType>
+
+	</element>
+
+
+</schema>
